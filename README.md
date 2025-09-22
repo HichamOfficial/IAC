@@ -90,4 +90,18 @@ De volledige output staat in [opdracht3-run.txt](outputs/opdracht3-run.txt) en d
 
 - [opdracht3-curl-check.txt](outputs/opdracht3-curl-check.txt)
 
-## Opdracht 4 –
+## Opdracht 4 – Herhalingstaken met variabelen
+
+Voor deze opdracht heb ik een playbook gemaakt (`04_repetitive.yml`) waarmee ik in één keer meerdere dingen kan regelen op al mijn servers. De details (welke packages, users en files) heb ik in `group_vars` gezet, zodat ik het playbook niet elke keer hoef aan te passen.
+
+### Wat ik gedaan heb
+- **Packages:** Op de webservers wordt nginx geïnstalleerd en op de database curl. Dit staat in de variabelen, dus het playbook kiest zelf wat waar hoort. Bij een tweede run zie je netjes `changed=0`, dus idempotent werkt zoals het hoort.  
+- **Users:** Ik heb de users `devuser` en `testuser` toegevoegd, en `olduser` verwijderd. Toen ik controleerde met `id olduser` kreeg ik een error terug. Dat lijkt fout, maar dat is juist goed, want die user moet er niet meer zijn.  
+- **Files/Directories:** Ik heb in `/opt` een map (`demo_dir`) en een bestand (`demo_file.txt`) laten maken met de juiste rechten. Eerst stond het bestand op `touch`, waardoor elke run weer `changed` gaf. Door dit aan te passen naar `file` blijft het idempotent: na de eerste keer blijft alles netjes gelijk.
+
+### Resultaat
+- Eerste run: er worden echt dingen aangemaakt (users, bestanden, packages). Zie [opdracht4-run1.txt](outputs/opdracht4-run1.txt).  
+- Tweede run: alles staat goed en er verandert niks meer. Zie [opdracht4-run2.txt](outputs/opdracht4-run2.txt).  
+- Na het fixen van `touch` → `file` bleef het ook netjes idempotent. Zie [opdracht4-run3.txt](outputs/opdracht4-run3.txt).  
+
+**Conclusie:** Het werkt zoals bedoeld. Door variabelen te gebruiken is het playbook overzichtelijker en makkelijker opnieuw te gebruiken. De checks (`id`, `systemctl`, enz.) laten zien dat alles klopt.
