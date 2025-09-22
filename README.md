@@ -105,3 +105,31 @@ Voor deze opdracht heb ik een playbook gemaakt (`04_repetitive.yml`) waarmee ik 
 - Na het fixen van `touch` → `file` bleef het ook netjes idempotent. Zie [opdracht4-run3.txt](outputs/opdracht4-run3.txt).  
 
 **Conclusie:** Het werkt zoals bedoeld. Door variabelen te gebruiken is het playbook overzichtelijker en makkelijker opnieuw te gebruiken. De checks (`id`, `systemctl`, enz.) laten zien dat alles klopt.
+
+---
+
+# Git Workshop
+
+---
+
+# Stap 9: CHANGELOG en commitconventies
+
+## Bijdragen
+Zie [CONTRIBUTING.md](CONTRIBUTING.md) voor de richtlijnen om bij te dragen aan dit project.
+
+## Licentie
+Dit project is gelicentieerd onder de MIT-licentie. Zie [LICENSE](LICENSE).
+
+## Changelog
+Alle belangrijke wijzigingen in dit project worden bijgehouden in [CHANGELOG.md](CHANGELOG.md).
+
+## Commit conventies
+Dit project volgt de **Conventional Commits** standaard:
+
+- feat: nieuwe feature
+- fix: bugfix
+- docs: documentatie
+- chore: onderhoud
+- refactor: herstructurering
+- perf: performance
+- test: tests
