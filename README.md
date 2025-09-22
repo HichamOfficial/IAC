@@ -65,16 +65,29 @@ Beide servers gaven een HTTP/1.1 200 OK terug. Dat betekent dat nginx goed draai
 ## Conclusie
 Alles werkt zoals het hoort: nginx is geïnstalleerd, draait, en blijft netjes actief. Het is ook fijn dat Ansible bij een tweede run niks onnodigs meer doet.
 
-## Opdracht 3 –
-In deze opdracht heb ik één playbook gemaakt (`03_multi_group.yml`) waarin meerdere groepen servers tegelijk worden aangestuurd.
+## Opdracht 3 – Meerdere groepen in één playbook
 
-- Voor de app-servers (`web1` en `web2`) heb ik **chrony** geïnstalleerd en de service gestart en enabled.  
-- Voor de database-server (`db`) heb ik **curl** geïnstalleerd.
+In deze opdracht moest ik één playbook maken (03_multi_group.yml) dat tegelijk taken uitvoert op verschillende groepen servers.
+
+- Voor de app-servers (web1 en web2) heb ik chrony geïnstalleerd en meteen de service gestart en enabled.
+
+- Voor de db-server (db) heb ik curl geïnstalleerd.
 
 ### Resultaat
-Bij de eerste run zie je dat chrony geïnstalleerd werd op web1 en web2, en curl al aanwezig was op de db (dus changed=0 daar).  
-Bij een tweede run geeft Ansible overal changed=0, wat laat zien dat de taken idempotent zijn.
 
-De volledige output heb ik opgeslagen in [opdracht3-run.txt](outputs/opdracht3-run.txt)
+Bij de eerste run zie je dat chrony geïnstalleerd werd op de app-servers, en dat curl al standaard aanwezig was op de db (dus daar changed=0).
+Bij de tweede run kreeg ik overal changed=0, wat betekent dat alles idempotent is.
+
+Ik heb ook nog apart gecheckt:
+
+- Op de app-servers draaide chrony (systemctl is-active chrony → active).
+
+- Op de db-server stond curl netjes geïnstalleerd (curl --version gaf de juiste versie terug).
+
+De volledige output staat in [opdracht3-run.txt](outputs/opdracht3-run.txt) en de extra checks in:
+
+- [opdracht3-curl-chrony.txt](outputs/opdracht3-chrony-check.txt)
+
+- [opdracht3-curl-check.txt](outputs/opdracht3-curl-check.txt)
 
 ## Opdracht 4 –
