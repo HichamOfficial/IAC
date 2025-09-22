@@ -10,7 +10,7 @@ Eerst probeerde ik met een ad-hoc commando de hosts te pingen:
 ansible all -a "ping -c 1"
 
 Dat ging mis, want Ansible voert dan gewoon het Linux ping-commando uit zonder extra logica.
-De volledige output staat in: ping-ad-hoc.txt
+De volledige output staat in: [ping-ad-hoc.txt](outputs/ping-ad-hoc.txt)
 ````
 Test 2: Ansible module
 
@@ -19,7 +19,7 @@ Daarna heb ik hetzelfde geprobeerd met de Ansible ping module:
 ansible all -m ansible.builtin.ping
 
 Dit werkte meteen goed: alle servers reageerden met pong.
-De volledige output staat in ping-module.txt
+De volledige output staat in [ping-module.txt](outputs/ping-module.txt)
 ````
 
 Conclusie
