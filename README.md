@@ -110,7 +110,6 @@ Voor deze opdracht heb ik een playbook gemaakt (`04_repetitive.yml`) waarmee ik 
 
 # Git Workshop
 
----
 
 # Stap 9: CHANGELOG en commitconventies
 
