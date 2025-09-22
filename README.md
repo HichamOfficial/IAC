@@ -86,7 +86,7 @@ Ik heb ook nog apart gecheckt:
 
 De volledige output staat in [opdracht3-run.txt](outputs/opdracht3-run.txt) en de extra checks in:
 
-- [opdracht3-curl-chrony.txt](outputs/opdracht3-chrony-check.txt)
+- [opdracht3-chrony-check.txt](outputs/opdracht3-chrony-check.txt)
 
 - [opdracht3-curl-check.txt](outputs/opdracht3-curl-check.txt)
 
