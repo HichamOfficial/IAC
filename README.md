@@ -75,6 +75,6 @@ In deze opdracht heb ik één playbook gemaakt (`03_multi_group.yml`) waarin mee
 Bij de eerste run zie je dat chrony geïnstalleerd werd op web1 en web2, en curl al aanwezig was op de db (dus changed=0 daar).  
 Bij een tweede run geeft Ansible overal changed=0, wat laat zien dat de taken idempotent zijn.
 
-De volledige output heb ik opgeslagen in [opdracht3-run.txt](outputs/opdracht3-run.txt).
+De volledige output heb ik opgeslagen in [opdracht3-run.txt](outputs/opdracht3-run.txt)
 
 ## Opdracht 4 –
