@@ -1,0 +1,24 @@
+web1 | CHANGED | rc=0 >>
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Mon, 22 Sep 2025 00:24:04 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Mon, 22 Sep 2025 00:20:07 GMT
+Connection: keep-alive
+ETag: "68d09637-267"
+Accept-Ranges: bytes  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0   615    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+web2 | CHANGED | rc=0 >>
+HTTP/1.1 200 OK
+Server: nginx/1.24.0 (Ubuntu)
+Date: Mon, 22 Sep 2025 00:24:04 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Mon, 22 Sep 2025 00:20:12 GMT
+Connection: keep-alive
+ETag: "68d0963c-267"
+Accept-Ranges: bytes  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0   615    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
