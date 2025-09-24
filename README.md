@@ -45,7 +45,7 @@ Ik heb hiervoor het playbook [02_packages_services.yml](playbooks/02_packages_se
 ```bash
 ansible-playbook playbooks/02_packages_services.yml
 ````
-Bij de eerste run zag je dat nginx geïnstalleerd werd. Toen ik het playbook daarna nog een keer draaide, gebeurde er niks meer (wat juist goed is). Dat laat zien dat Ansible idempotent werkt: als alles al goed staat, verandert er niks.
+Bij de eerste run zag je dat nginx geïnstalleerd werd. Toen ik het playbook daarna nog een keer draaide, gebeurde er niks meer (wat juist goed is). Dat laat zien dat Ansible slim genoeg is om te zien dat alles al goed staat, en daarom blijft het netjes op `changed=0`.
 
 ### Controleren of nginx draait
 Daarna heb ik met een ad-hoc commando gecheckt of de service ook echt actief was:
