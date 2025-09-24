@@ -8,7 +8,7 @@ De opdrachten zijn stap voor stap uitgevoerd en hieronder beschreven, inclusief 
 ## Opdracht 1 – Repo & bereikbaarheid
 
 In deze opdracht heb ik Ansible klaargezet om verbinding te maken met mijn drie servers (`db`, `web1` en `web2`).  
-Hiervoor heb ik een `ansible.cfg` gemaakt die naar mijn `inventory.ini` wijst. In de inventory heb ik de servers verdeeld in groepen (app en database) en de juiste SSH-key gekoppeld.
+Hiervoor heb ik een [ansible.cfg](ansible.cfg) gemaakt die naar mijn [inventory.ini](inventory.ini) wijst. In de inventory heb ik de servers verdeeld in groepen (app en database) en de juiste SSH-key gekoppeld.
 
 ---
 
@@ -41,7 +41,7 @@ In deze opdracht moest ik met Ansible nginx installeren en beheren op de app-ser
 
 ### Playbook draaien
 
-Ik heb hiervoor het playbook 02_packages_services.yml gebruikt. Dit zorgt dat nginx wordt geïnstalleerd en dat de service actief en enabled is:
+Ik heb hiervoor het playbook [02_packages_services.yml](playbooks/02_packages_services.yml) gebruikt. Dit zorgt dat nginx wordt geïnstalleerd en dat de service actief en enabled is:
 ```bash
 ansible-playbook playbooks/02_packages_services.yml
 ````
@@ -67,7 +67,7 @@ Alles werkt zoals het hoort: nginx is geïnstalleerd, draait, en blijft netjes a
 
 ## Opdracht 3 – Meerdere groepen in één playbook
 
-In deze opdracht moest ik één playbook maken (03_multi_group.yml) dat tegelijk taken uitvoert op verschillende groepen servers.
+In deze opdracht moest ik één playbook maken [03_multi_group.yml](playbooks/03_multi_group.yml) dat tegelijk taken uitvoert op verschillende groepen servers.
 
 - Voor de app-servers (web1 en web2) heb ik chrony geïnstalleerd en meteen de service gestart en enabled.
 
@@ -76,7 +76,7 @@ In deze opdracht moest ik één playbook maken (03_multi_group.yml) dat tegelijk
 ### Resultaat
 
 Bij de eerste run zie je dat chrony geïnstalleerd werd op de app-servers, en dat curl al standaard aanwezig was op de db (dus daar changed=0).
-Bij de tweede run kreeg ik overal changed=0, wat betekent dat alles idempotent is.
+Bij de tweede run kreeg ik overal changed=0, wat betekent dat er niks meer hoefde te gebeuren en alles gewoon goed stond.
 
 Ik heb ook nog apart gecheckt:
 
@@ -92,17 +92,17 @@ De volledige output staat in [opdracht3-run.txt](outputs/opdracht3-run.txt) en d
 
 ## Opdracht 4 – Herhalingstaken met variabelen
 
-Voor deze opdracht heb ik een playbook gemaakt (`04_repetitive.yml`) waarmee ik in één keer meerdere dingen kan regelen op al mijn servers. De details (welke packages, users en files) heb ik in `group_vars` gezet, zodat ik het playbook niet elke keer hoef aan te passen.
+Voor deze opdracht heb ik een playbook gemaakt [04_repetitive.yml](playbooks/04_repetitive.yml) waarmee ik in één keer meerdere dingen kan regelen op al mijn servers. De details (welke packages, users en files) heb ik in `group_vars` gezet, zodat ik het playbook niet elke keer hoef aan te passen.
 
 ### Wat ik gedaan heb
-- **Packages:** Op de webservers wordt nginx geïnstalleerd en op de database curl. Dit staat in de variabelen, dus het playbook kiest zelf wat waar hoort. Bij een tweede run zie je netjes `changed=0`, dus idempotent werkt zoals het hoort.  
+- **Packages:** Op de webservers wordt nginx geïnstalleerd en op de database curl. Dit staat in de variabelen, dus het playbook kiest zelf wat waar hoort. Als ik het daarna nog een keer draai, zie je overal `changed=0`, wat betekent dat er niks meer aangepast hoeft te worden.
 - **Users:** Ik heb de users `devuser` en `testuser` toegevoegd, en `olduser` verwijderd. Toen ik controleerde met `id olduser` kreeg ik een error terug. Dat lijkt fout, maar dat is juist goed, want die user moet er niet meer zijn.  
-- **Files/Directories:** Ik heb in `/opt` een map (`demo_dir`) en een bestand (`demo_file.txt`) laten maken met de juiste rechten. Eerst stond het bestand op `touch`, waardoor elke run weer `changed` gaf. Door dit aan te passen naar `file` blijft het idempotent: na de eerste keer blijft alles netjes gelijk.
+- **Files/Directories:** Ik heb in `/opt` een map (`demo_dir`) en een bestand (`demo_file.txt`) laten maken met de juiste rechten. Eerst stond het bestand op `touch`, waardoor elke run weer `changed` gaf. Door dit aan te passen naar `file` bleef alles na de eerste run gewoon goed staan (`changed=0`).
 
 ### Resultaat
 - Eerste run: er worden echt dingen aangemaakt (users, bestanden, packages). Zie [opdracht4-run1.txt](outputs/opdracht4-run1.txt).  
 - Tweede run: alles staat goed en er verandert niks meer. Zie [opdracht4-run2.txt](outputs/opdracht4-run2.txt).  
-- Na het fixen van `touch` → `file` bleef het ook netjes idempotent. Zie [opdracht4-run3.txt](outputs/opdracht4-run3.txt).  
+- Na het aanpassen van `touch` → `file` bleef het ook netjes goed staan. Bij een volgende run gaf alles gewoon `changed=0`. Zie [opdracht4-run3.txt](outputs/opdracht4-run3.txt).  
 
 **Conclusie:** Het werkt zoals bedoeld. Door variabelen te gebruiken is het playbook overzichtelijker en makkelijker opnieuw te gebruiken. De checks (`id`, `systemctl`, enz.) laten zien dat alles klopt.
 
